@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+{% extends "AppTwo/baseTwo.html"%}
+
+    {% block title_block %}
+        Projects - Submissions
+    {% endblock %}
+
+
+
+    {% block body_block %}
+    <h1 align="center" style='text-decoration: underline'>Submitted Projects</h1>
+
+    <div class="projects_table">
+<!--         below is template tagging - check if 'access_record' exists-->
+        {% if projects %}
+
+            <table class="TD">
+                <thead>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Project Genre</th>
+                    <th>Project Name</th>
+                    <th>Project Description</th>
+                </thead>
+
+    <!--             template tagging - running a for loop on access_record,-->
+    <!--             which is being pulled from the views-->
+                {% for i in projects %}
+
+                <tr>
+                    <td>{{ i.first_name }}</td>
+                    <td>{{ i.last_name }}
+                    <td>{{ i.subject_genre }}</td>
+                    <td>{{ i.project_name }}</td>
+                    <td>{{ i.project_description }}</td>
+<!--                    <td>{{ i.project_documents }}</td>-->
+                </tr>
+
+    <!--            indicating the end of the for loop-->
+                {% endfor %}
+
+            </table>
+
+<!--         else statement for our if statement we made above-->
+        {% else %}
+
+            <p>Sorry, No Users Found</p>
+
+<!--         indicating the end of the if statement-->
+        {% endif %}
+
+
+
+
+<!--        styling for the table -->
+
+        <style>
+
+            .TD{
+                width: 100%;
+                border: 2px solid black;
+                padding: 5px;
+                font-size: 30px
+            }
+
+            th, td{
+            border: 1px solid black;
+            padding: 5px;
+            }
+
+
+            th{
+             text-decoration: underline
+            }
+
+        </style>
+
+    </div>
+    {% endblock %}
+

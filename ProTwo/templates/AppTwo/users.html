@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <link rel="stylesheet" href="{% static 'css/myStyle.css' %}">
+</head>
+<body>
+
+    <h1 align="center" style="text-decoration: underline">Signed up Users</h1>
+
+    <div class="container">
+<!--         below is template tagging - check if 'access_record' exists-->
+        {% if Activate_Users %}
+
+            <table>
+                <thead>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email Address</th>
+                </thead>
+
+    <!--             template tagging - running a for loop on access_record,-->
+    <!--             which is being pulled from the views-->
+                {% for i in Activate_Users %}
+
+                <tr>
+                    <td>{{ i.first_name }}</td>
+                    <td>{{ i.last_name }}
+                    <td>{{ i.email }}</td>
+                </tr>
+
+    <!--            indicating the end of the for loop-->
+                {% endfor %}
+
+            </table>
+
+<!--         else statement for our if statement we made above-->
+        {% else %}
+
+            <p>Sorry, No Users Found</p>
+
+<!--         indicating the end of the if statement-->
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
+
